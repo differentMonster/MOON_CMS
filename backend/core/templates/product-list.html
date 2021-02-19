@@ -1,0 +1,85 @@
+{% extends "layouts/base.html" %}
+{% load rest_framework %}
+
+{% block title %} Cheongsam {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+
+{% block content %}
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Products</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Product</a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">{{ model }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <!-- [ Hover-table ] start -->
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>{{ model }} Table</h5>
+                            <div style="float:right"><a href="./product_create" class="btn btn-primary" title="btn btn-primary" >Create</a></div>
+                            <span class="d-block m-t-5">use class <code>table-hover</code> inside table element</span>
+                        </div>
+                        <div class="card-block table-border-style">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Sku</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if posts %}
+                                        {% for post in posts %}
+                                        <tr>
+                                            <th scope="row">{{ post.id }}</th>
+                                            <td>{{ post.name }}</td>
+                                            <td>{{ post.sku }}</td>
+                                            <td>{{ post.price }}</td>
+                                            <td><a href="./product_edit/{{ post.id }}" class="btn btn-success" title="btn btn-success">Edit</a></td>
+                                            <td><a href="./product_delete/{{ post.id }}" class="btn btn-danger" title="btn btn-danger">Delete</a></td>
+
+                                        </tr>
+                                        {% endfor %}
+                                        {% else %}
+                                        <strong>there are not such present</strong>
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ basic-table ] end -->
+
+
+    </div>
+</div>
+{% endblock %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
